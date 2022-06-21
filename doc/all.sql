@@ -9,3 +9,12 @@ create table test(
 insert into test value (1,'zhangsan','123456');
 
 select * from test;
+
+drop table if exists demo;
+create table demo(
+    id bigint not null comment 'id',
+    name varchar(50) comment '名称',
+    primary key (id)
+)engine =innodb default charset =utf8mb4 comment ='测试';
+
+insert into demo value(1,'测试');
