@@ -9,8 +9,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 
 @SpringBootApplication
-@ComponentScan("com.example")
-@MapperScan("com.example.wiki.mapper")
+@ComponentScan("com.jiawa")
+@MapperScan("com.jiawa.wiki.mapper")
 public class WikiApplication {
 
     private static final Logger LOG= LoggerFactory.getLogger(WikiApplication.class);
