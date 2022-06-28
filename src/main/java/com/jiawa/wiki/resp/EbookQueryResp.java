@@ -1,6 +1,6 @@
-package com.jiawa.wiki.req;
+package com.jiawa.wiki.resp;
 
-public class EbookReq extends PageReq{
+public class EbookQueryResp {
     private Long id;
 
     private String name;
