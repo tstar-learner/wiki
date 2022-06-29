@@ -1,4 +1,4 @@
-package com.example.wiki.domain;
+package com.jiawa.wiki.domain;
 
 import java.util.ArrayList;
 import java.util.List;

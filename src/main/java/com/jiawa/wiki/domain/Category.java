@@ -1,4 +1,4 @@
-package com.example.wiki.domain;
+package com.jiawa.wiki.domain;
 
 public class Category {
     private Long id;
