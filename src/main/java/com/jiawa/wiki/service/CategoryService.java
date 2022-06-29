@@ -32,6 +32,7 @@ public class CategoryService {
 
     public PageResp<CategoryQueryResp> list(CategoryQueryReq req){
         CategoryExample categoryExample=new CategoryExample();
+        categoryExample.setOrderByClause("sort asc");
         CategoryExample.Criteria criteria = categoryExample.createCriteria();
 
         PageHelper.startPage(req.getPage(),req.getSize());
@@ -57,6 +58,23 @@ public class CategoryService {
         return pageResp;
     }
 
+    public List<CategoryQueryResp> all(){
+        CategoryExample categoryExample=new CategoryExample();
+        categoryExample.setOrderByClause("sort asc");
+        List<Category> categoryList = categoryMapper.selectByExample(categoryExample);
+
+
+        //List<CategoryResp> respList=new ArrayList<>();
+//        for (Category category :
+//                categoryList) {
+//            CategoryResp categoryResp=new CategoryResp();
+//            BeanUtils.copyProperties(category,categoryResp);
+//            respList.add(categoryResp);
+//        }
+        List<CategoryQueryResp> respList = CopyUtils.copyList(categoryList, CategoryQueryResp.class);
+
+        return respList;
+    }
     /**
      * 保存
      */
