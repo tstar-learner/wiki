@@ -7,8 +7,8 @@
           @click="handleClick"
       >
         <a-menu-item key="welcome">
-            <MailOutlined />
-            <span>欢迎</span>
+          <MailOutlined />
+          <span>欢迎</span>
         </a-menu-item>
         <a-sub-menu v-for="item in level1" :key="item.id">
           <template v-slot:title>
@@ -24,7 +24,7 @@
         :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }"
     >
       <div class="welcome" v-show="isShowWelcome">
-        <h1>欢迎使用知识库</h1>
+        <h1>欢迎使用甲蛙知识库</h1>
       </div>
       <a-list v-show="!isShowWelcome" item-layout="vertical" size="large" :grid="{ gutter: 20, column: 3 }" :data-source="ebooks">
         <template #renderItem="{ item }">
@@ -94,25 +94,38 @@ export default defineComponent({
       });
     };
 
-    const isShowWelcome=ref(true);
+    const isShowWelcome = ref(true);
+    let categoryId2 = 0;
 
-    const handleClick = (value:any) => {
-      // console.log("menu click")
-      isShowWelcome.value=value.key==='welcome';
-    };
-
-    onMounted(() => {
-      handleQueryCategory();
+    const handleQueryEbook = () => {
       axios.get("/ebook/list", {
         params: {
           page: 1,
-          size: 1000
+          size: 1000,
+          categoryId2: categoryId2
         }
       }).then((response) => {
         const data = response.data;
         ebooks.value = data.content.list;
         // ebooks1.books = data.content;
       });
+    };
+
+    const handleClick = (value: any) => {
+      console.log("menu click", value)
+      if (value.key === 'welcome') {
+        isShowWelcome.value = true;
+      } else {
+        categoryId2 = value.key;
+        isShowWelcome.value = false;
+        handleQueryEbook();
+      }
+      // isShowWelcome.value = value.key === 'welcome';
+    };
+
+    onMounted(() => {
+      handleQueryCategory();
+      // handleQueryEbook();
     });
 
     return {
